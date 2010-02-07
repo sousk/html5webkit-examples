@@ -1,0 +1,27 @@
+<!-- 
+http://code.google.com/p/chromium/issues/detail?id=16142
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<style>
+
+</style>
+<script>
+
+document.ondragstart = function(e) {
+  e.dataTransfer.setData('Text', 'Cat');
+  e.dataTransfer.setDragImage(document.querySelector('p'), 0, 0);
+}
+
+</script>
+</head>
+<body>
+
+<p>Hello Cat <img src="http://www.whatwg.org/demos/2008-sept/dnd/cat.png" style="width:32px;height:32px;"></p>
+
+<span style="-webkit-user-drag:element;-webkit-user-select:none">Drag me</span>
+
+</body>
+</html>

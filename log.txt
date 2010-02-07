@@ -8,15 +8,17 @@ buf
     Using the Pasteboard From JavaScript
     Using the Canvas
     Calling Objective-C Methods From JavaScript
-  
+
+docs
+  http://code.google.com/p/chromium/issues/list?can=2&q=type=Feature%20area=WebKit&sort=-id&colspec=ID%20Stars%20Pri%20Area%20Type%20Status%20Summary%20Modified%20Owner%20Mstone%20OS
   
 current
-  http://html5doctor.com/native-drag-and-drop/
+  Introduction to WebKit DOM Programming Topics
+    Using the Pasteboard From JavaScript
   
-  SafariRL: Using Drag and Drop From JavaScript
-    effectAllowed prop, dataTransfer obj, 
-    > For security purposes, the getData method can be called only from within the ondrop event handler.
     
 done
   http://html5doctor.com/html-5-boilerplates/
-
+  SafariRL: Using Drag and Drop From JavaScript
+    effectAllowed prop, dataTransfer obj, 
+    > For security purposes, the getData method can be called only from within the ondrop event handler.

@@ -26,7 +26,11 @@
       float: left;
     }
     img {
-      -webkit-user-drag:element;
+      -webkit-user-drag: element;
+      -webkit-drag: ;
+    }
+    img:-webkit-drag {
+        background-color:rgb(255,255,154);
     }
     .draggable-txt {
       -webkit-user-drag:element;
@@ -57,5 +61,10 @@
   <p class="container">
     <span class="draggable-txt">drag me :)</span>
   </p>
+  <p>
+    Hello Cat
+    <img src="http://www.whatwg.org/demos/2008-sept/dnd/cat.png" style="width:32px;height:32px;">
+  </p>
+  <span style="-webkit-user-drag:element;-webkit-user-select:none">Drag me</span>
 </body>
 </html>

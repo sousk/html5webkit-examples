@@ -24,11 +24,26 @@ $(document).ready(function() {
 	
 	var 
 		drops = $('img, .draggable-txt'),
-		targets = $('.target');
+		targets = $('.target'),
+		dragging = $('img').get(0);
+	
+	// $(document).bind('dragstart', function(evt) {
+	//   evt.dataTransfer.setDragImage(dragging, 0, 0);
+	// });
+	document.ondragstart = function(e) {
+	  // e.dataTransfer.setData('Text', 'Cat');
+	  e.dataTransfer.setDragImage(dragging, 0, 0);
+	};
 	
 	drops
 		.bind('dragstart', function(evt) {
 			log("start");
+			log(evt);
+			// evt.originalEvent.dataTransfer.setDragImage(dragging.get(0),0,0);
+			// var obj = evt.originalEvent.dataTransfer;
+			// for(var k in obj) {
+			// 	log(k +"::"+obj[k]);
+			// }
 			// return false; stops dragging
 		})
 		.bind('drag', function(evt) {
@@ -43,11 +58,8 @@ $(document).ready(function() {
 	
 	targets
 		.bind('dragover', function(evt) {
-			mark_current_target(evt, targets);
-			// log("count-up while overed");
-			// $(evt.currentTarget).css({
-			// 	backgroundImage: "url(./img/star_32.png)"
-			// });
+			// mark_current_target(evt, targets);
+			log("count-up while overed");
 			// shows [+] button
 			return false;
 		})
@@ -57,7 +69,7 @@ $(document).ready(function() {
 			return false;
 		})
 		.bind('dragleave', function(evt) {
-			mark_current_target(evt, targets);
+			mark_current_target(null, targets);
 			log("leaved");
 			return false;
 		})
