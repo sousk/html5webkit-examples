@@ -1,0 +1,22 @@
+references
+  http://www.whatwg.org/specs/web-apps/current-work/multipage/
+
+buf
+  http://html5doctor.com/article-archive/
+  http://dev.opera.com/articles/view/html-5-canvas-the-basics/
+  Introduction to WebKit DOM Programming Topics
+    Using the Pasteboard From JavaScript
+    Using the Canvas
+    Calling Objective-C Methods From JavaScript
+  
+  
+current
+  http://html5doctor.com/native-drag-and-drop/
+  
+  SafariRL: Using Drag and Drop From JavaScript
+    effectAllowed prop, dataTransfer obj, 
+    > For security purposes, the getData method can be called only from within the ondrop event handler.
+    
+done
+  http://html5doctor.com/html-5-boilerplates/
+
