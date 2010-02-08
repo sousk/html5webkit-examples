@@ -1,0 +1,39 @@
+<!-- http://html5doctor.com/native-drag-and-drop/ -->
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>canvas</title>
+  <script src="./canvas.js"></script>  
+</head>
+<body onload="load();">
+	<div id='front'>
+		<img class='clock-face-image' id='morningFace' src='../img/clock/base.png' alt='' />
+		<img class='clock-face-image' id='eveningFace' src='../img/clock/pmbase.png' alt='' />
+		<!-- script>
+			var element = $('eveningFace');
+			if (isItEvening)
+				element.style.opacity = clockFaceAnimation.now = 1.0;
+			else
+				element.style.opacity = clockFaceAnimation.now = 0.0;
+		</script -->
+		<div id='ampm'></div>
+		<canvas id='canvas' width="112" height="112"></canvas>
+		<div id ='localeDisplay'></div>
+		<div id="infoButton"></div>		
+	</div>
+	<div id='behind'>
+		<img src='../img/clock/bkclock.png' width='172' height='172' />
+		<div id='continent-label' class='label'>Continent:</div>
+		<select id='continent-popup' class='popup' onchange='continentchanged(this);'>
+		</select>
+		<select id='city-popup' class='popup' onchange='citychanged(this);'>
+			<option value='whatever'>None</option>
+		</select>
+
+		<div id='city-label' class='label'>City:</div>
+                <div id='done'></div>
+	</div>
+</body>
+
+</html>
