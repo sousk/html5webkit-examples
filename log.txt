@@ -5,17 +5,14 @@ buf
   http://html5doctor.com/article-archive/
   http://dev.opera.com/articles/view/html-5-canvas-the-basics/
   Introduction to WebKit DOM Programming Topics
-    Using the Pasteboard From JavaScript
-    Using the Canvas
     Calling Objective-C Methods From JavaScript
 
 docs
   http://code.google.com/p/chromium/issues/list?can=2&q=type=Feature%20area=WebKit&sort=-id&colspec=ID%20Stars%20Pri%20Area%20Type%20Status%20Summary%20Modified%20Owner%20Mstone%20OS
   
 current
-  Introduction to WebKit DOM Programming Topics
-    Using the Pasteboard From JavaScript
-  
+  http://www.whatwg.org/specs/web-apps/current-work/
+  http://blog.whatwg.org/
     
 done
   http://html5doctor.com/html-5-boilerplates/

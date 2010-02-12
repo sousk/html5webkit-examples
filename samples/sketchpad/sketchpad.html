@@ -1,0 +1,232 @@
+<!-- 
+  original is http://mugtug.com/sketchpad/
+  copying by hand for study
+ -->
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>sketchpad - copied</title>
+  <link href="sketchpad.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="top">
+    <div class="center">
+    <div class="west">
+      <div id="paint" class="cur">paint</div>
+      <div id="light">light</div>
+    </div>
+    <div class="east">
+      <div class="leftend"></div>
+      <div id="isolid">color</div>
+      <div id="igradient">gradient</div>
+      <div id="ipattern">pattern</div>
+      <div id="iswatch">swatch</div>
+      <div id="ihistory">history</div>
+      <div id="ioptions">options</div>
+      <div class="cur open" style="display:none">
+        <span></span>
+      </div>
+      <a href="" onmousedown="this.href=$('ctx_box').toDataURL()" target="_blank">
+        <div class="cur save">
+          <span></span>
+        </div>
+      </a>
+     <div style="background: none; border-left: none; border: none; border-left:1px solid #3e3e3e; height: 22px; padding: 0; cursor: default"></div>
+    </div>
+   </div>
+  </div>
+<!--
+  <div id="tools" class="gui">
+   <div class="bounds">
+     <div class="TL"></div>
+     <div class="TM"><div class="TMM">tools</div></div>
+     <div class="TR"></div><br />
+     <div class="ML"></div>
+     <div class="MM" onmousedown="noMove();">
+       <div class="z">
+  	     <div class="tools">
+	         <div onclick="gui_tools.imageCurrent('Marquee_'+vars.marquee)">
+  	         <img src="media/gui/sw_add.png" class="plus" alt="Marquee" />
+  	       </div>
+  	       <div onclick="gui_tools.imageCurrent('Crop')">
+  	         <img src="" class="Crop" alt="Crop" />
+  	       </div>
+  	       <br />
+  	       <div class="hr"></div>
+  	       <div onclick="gui_tools.imageCurrent('Text')">
+  	         <img src="" class="Text" alt="Text" />
+  	       </div>
+  	 <div onclick="gui_tools.imageCurrent('Shape_'+vars.shape)"><img src="media/gui/sw_add.png" class="plus" alt="Shape" /><img src="" class="Shape_ellipses Shape_polygon Shape_star Shape_burst Shape_gear" alt="Shape" /></div>
+  	 <div onclick="gui_tools.imageCurrent('Spirograph')"><img src="" class="Spirograph" alt="Spirograph" /></div>
+  	 <div onclick="gui_tools.imageCurrent(vars.draw)"><img src="media/gui/sw_add.png" class="plus" alt="Draw" /><img src="" class="Brush Calligraphy Pencil" alt="Draw" /></div>
+  	 <div onclick="gui_tools.imageCurrent('Fill')"><img src="" class="Fill" alt="Fill" /></div>
+  	 <div onclick="gui_tools.imageCurrent('Stamp')"><img src="" class="Stamp" alt="Stamp" /></div>
+  	 <div onclick="gui_tools.imageCurrent('Eraser')"><img src="" class="Eraser" alt="Eraser" /></div>
+  	 <div onclick="gui_tools.imageCurrent('Picker')"><img src="" class="Picker" alt="Picker" /></div>
+  	 <br />
+  	 <div class="hr"></div>
+  	</div>
+  	<div class="ss">
+  	 <div id="swap">F</div>
+  	 <div class="fill">
+  	  <canvas onmousedown="gui_palette.click('fill')" id="fill" title="Fill"></canvas>
+  	 </div>
+  	 <div class="stroke">
+  	  <canvas onmousedown="gui_palette.click('stroke')" id="stroke" title="Stroke"></canvas>
+  	  <div onmousedown="gui_palette.click('stroke')"><div></div></div>
+  	  <img src="media/gui/sw_switch.png"  style="display: block" onmousedown="gui_palette.current(); return false" alt="Switch Stroke with Fill" />
+  	 </div>
+  	</div>
+     </div>
+    </div>
+    <div class="MR"></div><br />
+    <div class="BL"></div>
+    <div class="BM"></div>
+    <div class="BR"></div>
+   </div>
+  </div>
+
+  <div id="options" class="gui">
+   <div class="bounds">
+    <div class="TL"></div>
+    <div class="TM">
+     <span class="TML"></span>
+     <div class="TRx"><img onclick="win.close('options',1)" onmousedown="return(noMove())" src="media/gui/win_close.png" title="Close" /></div>
+    </div>
+    <div class="TR"></div><br />
+    <div class="ML"></div>
+    <div class="MM" onmousedown="noMove()"></div>
+    <div class="MR"></div><br />
+    <div class="BL"></div>
+    <div class="BM"></div>
+    <div class="BR"></div>
+   </div>
+  </div>
+
+  <div id="history" class="gui">
+   <div class="bounds">
+    <div class="TL"></div>
+    <div class="TM">
+     <span class="TML">history</span>
+     <div class="TRx"><img onclick="win.close('history',1)" onmousedown="return(noMove())" src="media/gui/win_close.png" title="Close" /></div>
+    </div>
+    <div class="TR"></div><br />
+    <div class="ML"></div>
+    <div class="MM" onmousedown="noMove()"></div>
+    <div class="MR"></div><br />
+    <div class="BL"></div>
+    <div class="BM"></div>
+    <div class="BR"></div>
+   </div>
+  </div>
+
+  <div id="swatch" class="gui">
+   <div class="bounds">
+    <div class="TL"></div>
+    <div class="TM">
+     <span class="TML">swatch</span>
+     <div class="TRx"><img onclick="win.close('swatch',1)" onmousedown="return(noMove())" src="media/gui/win_close.png" title="Close" /></div>
+    </div>
+    <div class="TR"></div><br />
+    <div class="ML"></div>
+    <div class="MM" onmousedown="noMove()"></div>
+    <div class="MR"></div><br />
+    <div class="BL"></div>
+    <div class="BM"></div>
+    <div class="BR"></div>
+   </div>
+  </div>
+
+  <div id="pattern" class="gui">
+   <div class="bounds">
+    <div class="TL"></div>
+    <div class="TM">
+     <span class="TML">pattern</span>
+     <div class="TRx"><img onclick="win.close('pattern',1)" onmousedown="return(noMove())" src="media/gui/win_close.png" title="Close" /></div>
+    </div>
+    <div class="TR"></div><br />
+    <div class="ML"></div>
+    <div class="MM" onmousedown="noMove()"><div class="z"></div></div>
+    <div class="MR"></div><br />
+    <div class="BL"></div>
+    <div class="BM"></div>
+    <div class="BR"></div>
+   </div>
+  </div>
+
+  <div id="gradient" class="gui">
+   <div class="bounds">
+    <div class="TL"></div>
+    <div class="TM">
+     <span class="TML">gradient</span>
+     <div class="TRx"><img onclick="win.close('gradient',1)" onmousedown="return(noMove())" src="media/gui/win_close.png" title="Close" /></div>
+    </div>
+    <div class="TR"></div><br />
+    <div class="ML"></div>
+    <div class="MM" onmousedown="noMove()"></div>
+    <div class="MR"></div><br />
+    <div class="BL"></div>
+    <div class="BM"></div>
+    <div class="BR"></div>
+   </div>
+  </div>
+
+  <div id="solid" class="gui">
+   <div class="bounds">
+    <div class="TL"></div>
+    <div class="TM">
+     <span id="HEX" class="TML" title="HEX" onmousedown="preventDefault = false;" style="cursor: text; text-transform:uppercase">FFFFFF</span>
+     <div class="TRx"><img onclick="win.close('solid',1)" onmousedown="return(noMove())" src="media/gui/win_close.png" title="Close" /></div>
+    </div>
+    <div class="TR"></div><br />
+    <div class="ML"></div>
+    <div class="MM" onmousedown="noMove()"></div>
+    <div class="MR"></div><br />
+    <div class="BL"></div>
+    <div class="BM"></div>
+    <div class="BR"></div>
+   </div>
+  </div>
+-->
+  <div id="canvas" onmousedown="core.fu('canvas',event,{fu:core.win,Y1:19})" class="gui" style="width: 732px; height: 615px;">
+   <div class="TL"></div>
+   <div class="TM" ondblclick="win_size.tog(vars.winMax?'min':'max')">
+    <div class="center">
+     <span id="cTitle">DRAWING.PNG</span>
+    </div>
+    <div class="east" id="cZoom"></div>
+   </div>
+   <div class="TR"></div><br />
+   <div class="ML"></div>
+   <div class="MM">
+    <div class="z">
+     <div id="cBound" onmousedown="return(noMove())">
+  	<canvas id="ctx_box" style="z-index: 1"></canvas>
+  	<canvas id="ctx_temp" style="z-index: 2"></canvas>
+  	<canvas id="ctx_active" style="z-index: 5"></canvas>
+  	<canvas id="ctx_marquee" style="z-index: 6"></canvas>
+  	<canvas id="ctx_mouse" style="z-index: 7"></canvas>
+     </div>
+     <canvas id="ctx_brush" width="200" height="200"></canvas>
+     <canvas id="ctx_stamp" width="200" height="200"></canvas>
+     <canvas id="ctx_eraser" width="200" height="200"></canvas>
+     <canvas id="ctx_picker" height="1" width="1"></canvas>
+     <div id="cHistory"></div>
+    </div>
+   </div>
+   <div class="MR"></div><br />
+   <div class="BL"></div>
+   <div class="BM"></div>
+   <div class="BR" onmousedown="vars.winMax='min'; win_size.core(event)"></div>
+  </div>
+
+  <div id="TEST" style="color: #fff; position: absolute; top: 40px; z-index: 100000"></div>
+  <script type="text/javascript" charset="utf-8" src="./util.js"> </script>
+  <script type="text/javascript" charset="utf-8" src="./gui.js"> </script>
+  <script type="text/javascript" charset="utf-8" src="./win.js"> </script>
+  <script type="text/javascript" charset="utf-8" src="./init.js"> </script>
+  <script type="text/javascript" charset="utf-8" src="./coloro.js"> </script>
+  <script type="text/javascript" charset="utf-8" src="./a.js"> </script>
+</body>
+</html>
