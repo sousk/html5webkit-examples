@@ -1,0 +1,10 @@
+.border {
+  margin: 5px;
+  border: 2px dotted green;
+}
+ul {
+  list-style: none;
+}
+ul li {
+  display: inline-block;
+}

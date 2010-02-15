@@ -1,5 +1,12 @@
 references
-  http://www.whatwg.org/specs/web-apps/current-work/multipage/
+  HTML5 http://www.whatwg.org/specs/web-apps/current-work/multipage/
+  Canvas http://dev.w3.org/html5/canvas-api/canvas-2d-api.html#simple-shapes-rectangles
+  
+
+idea
+  color-palette.tmbundle
+    show canvas palette
+    pick a color from hex number
 
 buf
   http://html5doctor.com/article-archive/
