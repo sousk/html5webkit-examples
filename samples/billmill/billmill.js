@@ -7,59 +7,88 @@ $(document).ready(function() {
 
 	new function keyboard() {
 		var 
-			x = 150,
+			x = 150, // pos of the ball
 			y = 150,
-			dx = 2,
+			dx = 2, // move of x
 			dy = 4,
-			WIDTH,
+			WIDTH, // width of the canvas
 			HEIGHT,
+			canvas_minx, // for mouse move
+			canvas_maxx,
+			right_down, // boolean, true if the user press right
 			paddle,
 			interval_id,
 			ctx;
 		
-		function draw() {
-			clear();
-			
-			paddle.draw();
-			circle(x, y, 10);
-			
-			// game over ?
-			if (y + dy > HEIGHT) {
-				clearInterval(interval_id);
-			}
-			
-			// reflection
-			if (x+dx > WIDTH || x+dx < 0)  dx = -dx;
-			if (y+dy > HEIGHT || y+dy < 0) dy = -dy;
-			
-			// move
-			x+=dx;
-			y+=dy;
-		}		
 		interval_id = init();
 
 		
 		
+		function draw() {
+			clear();
+			
+			// move paddle
+			if (right_down) paddle.x += 5;
+			if (left_down)  paddle.x -= 5;
+			rect(paddle.x, HEIGHT - paddle.h, paddle.w, paddle.h);
+			
+			circle(x, y, 10);
+			
+			// game over ?
+			if (y + dy > HEIGHT) {
+				// clearInterval(interval_id);
+			}
+						
+			// reflection
+			if (x+dx > WIDTH || x+dx < 0)  dx = -dx;
+			if (y+dy > HEIGHT || y+dy < 0) dy = -dy;
+			
+			// move for next
+			x+=dx;
+			y+=dy;
+		}		
 		function init() {
 			var cvs = $('#canvas');
 			ctx = cvs.get(0).getContext("2d");
 			WIDTH = cvs.width();
 			HEIGHT = cvs.height();
 			
+			right_down = false;
+			left_down = false;
+			$(document)
+				.keydown(on_key_down)
+				.keyup(on_key_up);
+			
 			init_paddle();
+			init_mouse();
 			
 			return setInterval(draw, 10);
 		}
-		function init_paddle() {
-			paddle = {
-				x: WIDTH / 2, h: 10, w: 75,
-				draw: function() {
-					var self = this;
-					rect(self.x, HEIGHT - self.h, self.w, self.h);
+		function init_mouse() {
+			var cvs = $('#canvas');
+			canvas_minx = cvs.offset().left;
+			canvas_maxx = canvas_minx + WIDTH;
+			
+			$(document).mousemove(function(evt) {
+				if (canvas_minx < evt.pageX && evt.pageX < canvas_maxx) {
+					paddle.x = evt.pageX - canvas_minx;
 				}
-			};
+			});
 		}
 		
+		function init_paddle() {
+			paddle = {
+				x: WIDTH / 2, h: 10, w: 75
+			};
+		}
+		function on_key_up(evt) {
+			if (evt.keyCode == 39) right_down = false;
+			if (evt.keyCode == 37) left_down = false;
+		}
+		function on_key_down(evt) {
+			if (evt.keyCode == 39) right_down = true;
+			if (evt.keyCode == 37) left_down = true;
+		}
 		function circle(x, y, r) {
 			ctx.beginPath();
 			ctx.arc(x, y, r, 0, Math.PI * 2, true);
