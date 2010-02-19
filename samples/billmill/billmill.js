@@ -17,31 +17,69 @@ $(document).ready(function() {
 			canvas_maxx,
 			right_down, // boolean, true if the user press right
 			paddle,
+			bricks,
+			NROWS,
+			BRICKWIDTH,
+			BRICKHEIGHT,
+			PADDING,
 			interval_id,
 			ctx;
 		
-		interval_id = init();
-
+		var 
+			ballr = 10,
+			rowcolors = ["#FF1C0A", "#FFFD0A", "#00A308", "#0008DB", "#EB0093"],
+			paddlecolor = "#FFF",
+			ballcolor = "#FFF",
+			backcolor = "#000";
 		
+		interval_id = init();
 		
 		function draw() {
 			clear();
+			circle(x, y, ballr);
 			
 			// move paddle
 			if (right_down) paddle.x += 5;
 			if (left_down)  paddle.x -= 5;
+			ctx.fillStyle = paddlecolor;
 			rect(paddle.x, HEIGHT - paddle.h, paddle.w, paddle.h);
 			
-			circle(x, y, 10);
-			
-			// game over ?
-			if (y + dy > HEIGHT) {
-				// clearInterval(interval_id);
+			// draw blocks
+			for (var i=0; i < NROWS; i++) {
+				ctx.fillStyle = rowcolors[i];
+				for (var j=0; j < NCOLS; j++) {
+					if (bricks[i][j] == 1) {
+						rect(
+							(j * (BRICKWIDTH + PADDING)) + PADDING,
+							(i * (BRICKHEIGHT + PADDING)) + PADDING,
+							BRICKWIDTH, BRICKHEIGHT);
+					}
+				}
 			}
-						
+			
+			// have we hit a brick ?
+			var rowheight = BRICKHEIGHT + PADDING;
+			var colwidth = BRICKWIDTH + PADDING;
+			var row = Math.floor(y/rowheight);
+			var col = Math.floor(x/colwidth);
+			// if so, reverse the ball and mark the brick as broken
+			if (y < NROWS * rowheight && row >= 0 && col >= 0 && bricks[row][col] > 0) {
+				dy = -dy;
+				bricks[row][col] = 0;
+			}
+
+			if (y+dy+ballr > HEIGHT) clearInterval(interval_id);			
+			
 			// reflection
-			if (x+dx > WIDTH || x+dx < 0)  dx = -dx;
-			if (y+dy > HEIGHT || y+dy < 0) dy = -dy;
+			if (x+dx+ballr > WIDTH || x+dx-ballr < 0)  dx = -dx;
+			else if (y+dy+ballr > HEIGHT || y+dy-ballr < 0) dy = -dy;
+			else if (y+dy+ballr > HEIGHT - paddle.h) {
+				if (paddle.x < x && x < paddle.x + paddle.w) {
+					// move the ball differently based on where it hit the paddle
+					dx = 8 * ((x - (paddle.x+paddle.w / 2)) / paddle.w);
+					dy = -dy;
+				}
+			}
 			
 			// move for next
 			x+=dx;
@@ -61,9 +99,26 @@ $(document).ready(function() {
 			
 			init_paddle();
 			init_mouse();
+			init_bricks();
 			
 			return setInterval(draw, 10);
 		}
+		function init_bricks() {
+			NROWS = 5;
+			NCOLS = 5;
+			BRICKWIDTH = (WIDTH/NCOLS) - 1;
+			BRICKHEIGHT = 15;
+			PADDING = 1;
+			
+			bricks = new Array(NROWS);
+			for (var i=0; i < NROWS; i++) {
+				bricks[i] = new Array(NCOLS);
+				for (var j=0; j < NCOLS; j++) {
+					bricks[i][j] = 1;
+				}
+			}
+		}
+		
 		function init_mouse() {
 			var cvs = $('#canvas');
 			canvas_minx = cvs.offset().left;
@@ -90,6 +145,7 @@ $(document).ready(function() {
 			if (evt.keyCode == 37) left_down = true;
 		}
 		function circle(x, y, r) {
+			ctx.fillStyle = ballcolor;
 			ctx.beginPath();
 			ctx.arc(x, y, r, 0, Math.PI * 2, true);
 			ctx.closePath();
@@ -102,6 +158,8 @@ $(document).ready(function() {
 		}
 		function clear() {
 			ctx.clearRect(0,0, WIDTH, HEIGHT);
+			ctx.fillStyle = backcolor;
+			rect(0,0,WIDTH,HEIGHT);
 		}		
 	};
 	
