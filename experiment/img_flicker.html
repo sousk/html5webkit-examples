@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
+ 
+<head> 
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"> 
+<style type="text/css" media="screen">
+	body {
+		background: #333;
+	}
+	#mario {
+		margin: 100px;
+	}
+	.animate {
+		-webkit-transition-duration: 3s;
+		-webkit-transform: scale(1.1) rotate(720deg);
+	}
+</style>
+<script type="text/javascript" charset="utf-8" src="../../lib/jquery-1.4.4.js"> </script>
+<script type="text/javascript" charset="utf-8">
+	window.onload = function() {
+		var imgs = $('img');
+		imgs.each(function(idx, img) {
+			var dr = (Math.random() * 1000 + 500).toFixed();
+			setTimeout(function() {
+				$(img).css({
+					webkitTransitionDuration: '2s',
+					webkitTransform: 'scale(1.1) rotate(720deg)'
+				});
+			}, dr);
+		});
+	};
+</script>
+
+<title>Retina Rendering Duration</title> 
+</head> 
+ 
+<body>
+  <div>
+		<img src="../img/mario_64.png" title="mario">
+		<img src="../img/mario_64.png" title="mario">
+		<img src="../img/mario_64.png" title="mario">
+		<img src="../img/mario_64.png" title="mario">
+		<img src="../img/mario_64.png" title="mario">
+  </div>
+</body> 
+</html>
