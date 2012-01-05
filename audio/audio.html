@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+	<meta name="viewport" content="width=device-width">
+  <meta charset="utf-8">
+  <title></title>
+	<style type="text/css" media="screen">
+		body {
+			margin:0;padding:0;
+			background: #333;
+		}
+		#trigger {
+			color: white;
+			font-size: 180%;
+			display: -webkit-box;
+			width: 100%;
+			-webkit-box-pack: center;
+		}
+	</style>
+	<script src="./audio.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+	<div id="trigger">
+		<input type="button" id="play" value="play :)">		
+		<input type="button" id="bgm" value="bgm :)">		
+	</div>
+	
+	
+	<script type="text/javascript" charset="utf-8">
+		var audio = make_audio('jump.mp3');
+		var pow = make_audio('pow.mp3');
+		
+		var cnt=0;
+		document.getElementById('play').addEventListener('click', function() {
+			if (cnt++ % 2 ==0) {
+				audio.play();
+			}
+			else {
+				pow.play();
+			}
+		});
+		
+		var bgm = make_audio('ff.mp3');
+		document.getElementById('bgm').addEventListener('click', function() {
+			console.log(bgm.paused)
+			if (bgm.played && ! bgm.paused) {
+				console.log("--> to be paused");
+				bgm.pause();
+			}
+			else {
+				console.log("--> to be played");
+				bgm.play();
+			}
+		});
+	</script>
+</body>
+</html>
